@@ -11,6 +11,12 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
+  //打包配置
+  build: {
+    outDir: 'dist',
+    assetsDir: 'static',
+    sourcemap: true//添加 source-map
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
