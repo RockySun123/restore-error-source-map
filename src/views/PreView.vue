@@ -42,7 +42,8 @@ const preLine = () => {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
+/* socpe 只对本组件有效 */
 .pre-code {
   .error-detail {
     .error-code {
