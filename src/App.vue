@@ -5,6 +5,7 @@ import { onMounted } from 'vue'
 onMounted(() => {
   // eslint-disable-next-line prefer-const
   let testNum = null
+
   if (testNum.length > 1) {
     console.log('抱错了')
   }
