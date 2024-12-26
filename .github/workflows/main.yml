@@ -4,7 +4,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # 当推送到 main 分支时触发部署流程
+      - dev # 当推送到 dev 分支时触发部署流程
     paths-ignore: # 忽略某些文件或目录的更改
       - README.md
 

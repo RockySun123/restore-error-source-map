@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { onMounted } from 'vue'
+// import { onMounted } from 'vue'
 //伪造错误
-onMounted(() => {
-  // eslint-disable-next-line prefer-const
-  let testNum = null
-
-  if (testNum.length > 1) {
-    console.log('抱错了')
-  }
-})
+// onMounted(() => {
+//   // eslint-disable-next-line prefer-const
+//   let testNum = null
+//   if (testNum.length > 1) {
+//     console.log('抱错了')
+//   }
+// })
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <!-- <HelloWorld msg="You did it!" /> -->
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/trigger">触发js异常</RouterLink>
       </nav>
     </div>
   </header>
@@ -39,8 +39,8 @@ header {
 }
 
 nav {
-  width: 100%;
-  font-size: 12px;
+  /* width: 100%; */
+  font-size: 1rem;
   text-align: center;
   margin-top: 2rem;
 }
@@ -66,6 +66,7 @@ nav a:first-of-type {
 @media (min-width: 1024px) {
   header {
     display: flex;
+    justify-content: center;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
   }
@@ -78,6 +79,8 @@ nav a:first-of-type {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
   }
 
   nav {
