@@ -1,0 +1,45 @@
+name: Deploy to GitHub Pages
+
+# 触发条件
+on:
+  push:
+    branches:
+      - main # 当推送到 main 分支时触发部署流程
+    paths-ignore: # 忽略某些文件或目录的更改
+      - README.md
+
+# 部署流程
+jobs:
+  build-and-deploy:
+    # 运行环境
+    runs-on: ubuntu-latest
+    # 部署步骤
+    steps:
+      # 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 设置 Node.js 环境
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x' # 指定 Node.js 版本
+
+      # 安装依赖
+      - name: Install dependencies
+        run: npm install
+
+      # 构建项目
+      - name: Build project
+        run: npm run build
+
+      # 部署到 gh-pages 分支
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          branch: gh-pages # 目标分支
+          github_token: ${{ secrets.SOURCEMAP }} # GitHub 访问令牌
+          publish_dir: ./dist # 你的构建输出目录
+          user_name: ${{ secrets.MY_USER_NAME }} # 你的用户名
+          user_email: ${{ secrets.MY_USER_EMAIL }} # 你的邮箱
+          commit_message: 自动部署 # 自定义提交信息
