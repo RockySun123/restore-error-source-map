@@ -19,7 +19,8 @@
 
         <el-row :gutter="20">
           <template v-if="item.origin">
-            {{ item.origin }}
+            <!-- {{ item.origin }} -->
+            <PreView :origin="item.origin"></PreView>
           </template>
           <template v-else>
             {{ item.fileName }}
@@ -49,6 +50,7 @@
 import { ElMessage } from 'element-plus'
 import { onMounted, ref } from 'vue'
 import sourceMap from 'source-map-js'
+import PreView from './PreView.vue'
 
 // 错误信息列表
 let js_error = ref<any>(null)
@@ -78,16 +80,14 @@ const handleClose = (done: () => void) => {
 }
 
 const sourceMapUpload = (file: File) => {
+  // 这里解析可能会有问题本地，线上环境可以，因为这里有上传的动作
+
   if (!file.name.endsWith('.map')) {
     ElMessage.error('请上传正确的sourceMap文件')
     return
   }
-
   const reader = new FileReader()
-  reader.readAsText(file, 'UTF-8')
   reader.onload = async function (evt) {
-    console.log(stackFrameObj.line, stackFrameObj.column)
-
     const code = await getSource(evt.target?.result, stackFrameObj.line, stackFrameObj.column)
 
     if (code) {
@@ -98,24 +98,19 @@ const sourceMapUpload = (file: File) => {
     dialogVisible.value = false
   }
 
+  reader.readAsText(file, 'UTF-8')
+
   return false //阻止自动上传（因为我们手动处理了文件读取逻辑
 }
 
 const getSource = async (sourcemap: any, line: number, column: number) => {
   try {
-    console.log(JSON.parse(sourcemap))
-
     const consumer = new sourceMap.SourceMapConsumer(JSON.parse(sourcemap))
-
     const originalPosition = consumer.originalPositionFor({
       line,
       column,
     })
-
-    console.log(originalPosition)
-
     const source = consumer.sourceContentFor(originalPosition.source)
-
     return {
       source,
       column: originalPosition.column,
