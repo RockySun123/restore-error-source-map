@@ -8,7 +8,7 @@
         :key="item.source + index"
         :title="item.source"
       >
-        <el-row :gutter="20">
+        <el-row :gutter="24">
           <el-col :span="20">{{ item.fileName }}</el-col>
           <el-col :span="4">
             <el-button type="primary" size="small" @click="openDialog(item, index)">

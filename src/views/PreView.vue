@@ -19,7 +19,7 @@ const encodeHTML = (str: string) => {
   if (!str || str.length === 0) return ''
   return str
     .replace(/&/g, '&#38;')
-    .replace(/</g, '$lt;')
+    .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/'/, '&#39;')
 }
