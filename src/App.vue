@@ -17,6 +17,8 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/trigger">触发js异常</RouterLink>
+        <RouterLink to="/record">行为录制</RouterLink>
+        <RouterLink to="/play">播放录制</RouterLink>
       </nav>
     </div>
   </header>

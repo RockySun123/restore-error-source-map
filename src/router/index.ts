@@ -12,10 +12,17 @@ const router = createRouter({
     {
       path: '/trigger',
       name: 'trigger',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/ErrorView.vue'),
+    },
+    {
+      path: '/record',
+      name: 'record',
+      component: () => import('../views/RecordScreen.vue'),
+    },
+    {
+      path: '/play',
+      name: 'play',
+      component: () => import('../views/PlayScreen.vue'),
     },
   ],
 })
