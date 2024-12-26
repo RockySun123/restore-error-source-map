@@ -9,6 +9,7 @@
 </template>
 <script lang="ts" setup>
 const triggerTypeError = () => {
+  // @ts-ignore
   if (typeError.length > 0) {
     console.log('error!')
   }
